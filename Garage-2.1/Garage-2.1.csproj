@@ -193,6 +193,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-Garage-2.1-20161115102135.mdf" />
+    <Content Include="App_Data\aspnet-Garage-2.1-20161115102135_log.ldf">
+      <DependentUpon>aspnet-Garage-2.1-20161115102135.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />

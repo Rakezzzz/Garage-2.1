@@ -22,18 +22,17 @@ namespace Garage_2._1.Models
 
         }
 
-        public Person(string name, string address, string phonenumber)
+        public Person(string name, string address, string phonenumber, string ssn = null)
         {
             this.Name = name;
             this.Address = address;
             this.Phonenumber = phonenumber;
-            //this.SSN = ssn;
+            this.SSN = ssn;
         }
 
         public object Clone()
         {
-           // return new Person(this.Name, this.Address, this.Phonenumber, this.SSN);
-            throw new NotImplementedException();
+           return new Person(this.Name, this.Address, this.Phonenumber, this.SSN);
         }
     }
 }

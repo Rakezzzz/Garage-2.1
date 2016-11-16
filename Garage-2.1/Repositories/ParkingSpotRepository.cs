@@ -138,6 +138,7 @@ namespace Garage_2._1.Repositories
         }
 
 
+
         /// <summary>
         /// Evicts someone from a specifik parkingspot or throws an exception.
         /// ParkingspotNotFoundException will be thrown if there is no corresponging parkingspot to the ID.

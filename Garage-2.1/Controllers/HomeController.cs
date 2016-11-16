@@ -79,12 +79,28 @@ namespace Garage_2._1.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult RentSpot()
+        public ActionResult RentSpot(int id)
         {
+            InfoViewModel model = new InfoViewModel(id);
+            //Set owner & timespan for spot
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult RentSpot(InfoViewModel model)
+        {
+
+            if (ModelState.IsValid)
+            {
+                // Not used until we have a user
+                // _repo.Rent(model.ParkingSpotId, model.Owner.SSN, model.Time);
+                return RedirectToAction("Index");
+            }
 
             //Set owner & timespan for spot
 
-            return View();
+            return View(model);
         }
 
         public ActionResult EditVehicle(int id)

@@ -41,5 +41,27 @@ namespace Common.Extensions
                     .Select(p => p.Name)
                     .Contains(propertyName);
         }
+
+
+        /// <summary>
+        /// Searches a property of inidividual items.
+        /// </summary>
+        /// <typeparam name="T">The Type of the object to search.</typeparam>
+        /// <param name="item">The Object to search.</param>
+        /// <param name="property">The Property to search.</param>
+        /// <param name="value">The Value to search for.</param>
+        /// <returns>Returns true if property contains the value (or part of it).</returns>
+        public static bool PropertyContains<T>(this T item, string property, string value)
+        {
+            if (item == null)
+                throw new ArgumentNullException("collection");
+
+            if (!typeof(T).HasProperty(property))
+                throw new ArgumentException("Provided Search Property is not present in Type.");
+
+            return typeof(T).GetProperty(property)
+                                    .GetValue(item, null).ToString()
+                                    .Contains(value);
+        }
     }
 }

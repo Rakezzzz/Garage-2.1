@@ -22,18 +22,5 @@ namespace Common.Extensions
             return source
                 .Where(item => item.PropertyContains<T>(property, value));
         }
-
-        public static bool PropertyContains<T>(this T item, string property, string value)
-        {
-            if (item == null)
-                throw new ArgumentNullException("collection");
-
-            if (!typeof(T).HasProperty(property))
-                throw new ArgumentException("Provided Search Property is not present in Type.");
-
-            return typeof(T).GetProperty(property)
-                                    .GetValue(item, null).ToString()
-                                    .Contains(value);
-        }
     }
 }

@@ -5,7 +5,7 @@ void AddTime ( ParkID, extraTime )
 Touple <Datetime, Timespan> Ceckout ( ParkID )
 
 
-void AddVehicle( vehicle )
+//void AddVehicle( vehicle )
 void EditVehicle ( vehicle )
 
 Views:

@@ -19,13 +19,12 @@ namespace Garage_2._1.Repositories
             get
             {
                 List<Parkingspot> secondTempList = dataBase.Parkingspots.ToList();
+
                 foreach (Parkingspot parkingspot in secondTempList)
                 {
-                    var temp = new Parkingspot();
-                    temp.OverrideProperties(parkingspot);
-                    temp.ParkedVehicle = GetVehicleByRegNum(temp.RegNum);
-                    temp.Renter = GetPersonBySSN(temp.SSN);
-                    yield return temp;
+                    parkingspot.ParkedVehicle = GetVehicleByRegNum(parkingspot.RegNum);
+                    parkingspot.Renter = GetPersonBySSN(parkingspot.SSN);
+                    yield return parkingspot;
                 }
             }
         }

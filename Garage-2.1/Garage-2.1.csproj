@@ -161,7 +161,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="DataAccess\GarageContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -178,6 +177,7 @@
     <Compile Include="Models\Common\Extensions\CollectionExtensions.cs" />
     <Compile Include="Models\Common\Extensions\ObjectExtensions.cs" />
     <Compile Include="Models\Exceptions\ParkingspotNotFoundException.cs" />
+    <Compile Include="Models\Exceptions\PersonAllreadyExistException.cs" />
     <Compile Include="Models\Exceptions\PersonNotFoundException.cs" />
     <Compile Include="Models\Exceptions\SpotAllreadyOccupiedException.cs" />
     <Compile Include="Models\Exceptions\VehicleAlreadyExistsException.cs" />
@@ -258,9 +258,7 @@
     <Content Include="Views\Home\EditVehicle.cshtml" />
     <Content Include="Views\Home\RentSpot.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

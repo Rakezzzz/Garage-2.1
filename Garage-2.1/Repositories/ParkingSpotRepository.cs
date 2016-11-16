@@ -154,5 +154,41 @@ namespace Garage_2._1.Repositories
             tempSpot.TimeOfRental = null;
             dataBase.SaveChanges();
         }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="vehicle"></param>
+        /// <param name="user"></param>
+        void AddVehicle(Vehicle vehicle, string user)
+        {
+            if (dataBase.Persons.Find(user) == null)
+                throw new PersonNotFoundException("The user havent added a person to thier account.");
+            if (dataBase.Vehicles.Find(vehicle.RegNum) != null)
+                throw new VehicleAllreadyExistException();
+
+            vehicle.SSN = user;
+            dataBase.Vehicles.Add(vehicle);
+            dataBase.SaveChanges();
+
+        }
+
+        /// <summary>
+        /// Adds a person to the database and binds it to a specific person or throws an exception.
+        /// PersonAllreadyExistException will be throw if a person with that ssn allready exists in the database.
+        /// </summary>
+        /// <param name="person">The person you want to add.</param>
+        /// <param name="user">The user who will be bound to that person.</param>
+        void AddPerson(Person person, string user)
+        {
+            if (dataBase.Persons.Find(person.SSN) != null)
+                throw new PersonAllreadyExistException("A person with that SSN allready exists and cannot be added again!");
+            person.SSN = user;
+
+            dataBase.Persons.Add(person);
+            dataBase.SaveChanges();
+        }
+
     }
 }

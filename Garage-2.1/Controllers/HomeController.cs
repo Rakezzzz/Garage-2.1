@@ -120,5 +120,11 @@ namespace Garage_2._1.Controllers
             _repo.Leave(id);
             return RedirectToAction("Index");
         }
+
+        public ActionResult Eviction(int id)
+        {
+            _repo.Eviction(id);
+            return RedirectToAction("Index");
+        }
     }
 }

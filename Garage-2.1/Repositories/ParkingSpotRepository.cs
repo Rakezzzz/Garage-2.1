@@ -22,8 +22,21 @@ namespace Garage_2._1.Repositories
 
                 foreach (Parkingspot parkingspot in secondTempList)
                 {
-                    parkingspot.ParkedVehicle = GetVehicleByRegNum(parkingspot.RegNum);
-                    parkingspot.Renter = GetPersonBySSN(parkingspot.SSN);
+                    try
+                    {
+                        parkingspot.Renter = GetPersonBySSN(parkingspot.SSN);
+                        parkingspot.ParkedVehicle = GetVehicleByRegNum(parkingspot.RegNum);
+                    }
+                    catch (PersonNotFoundException)
+                    {
+                        parkingspot.Renter = null;
+                        parkingspot.ParkedVehicle = null;
+                    }
+                    catch (VehicleNotFoundException)
+                    {
+                        parkingspot.ParkedVehicle = null;
+                    }
+
                     yield return parkingspot;
                 }
             }
@@ -35,7 +48,7 @@ namespace Garage_2._1.Repositories
         {
             var temp = (from v in dataBase.Vehicles
                 where v.RegNum == regNum
-                select v).First();
+                select v).FirstOrDefault();
             if (temp != null)
                 return dataBase.Vehicles.Find(regNum);
             else
@@ -44,7 +57,12 @@ namespace Garage_2._1.Repositories
 
         public Person GetPersonBySSN(string ssn)
         {
-            return dataBase.Persons.Find(ssn);
+            Person tempPerson = dataBase.Persons.Find(ssn);
+
+            if (tempPerson == null)
+                throw new PersonNotFoundException("That person doesnt exist in the database.");
+
+            return tempPerson;
         }
         /// <summary>
         /// It will add your vehicle to the parkingspot with ParkID or throw eather of 2 exceptions. 

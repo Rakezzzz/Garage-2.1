@@ -88,9 +88,9 @@ namespace Garage_2._0.Controllers
         {
 
             //get slot
-            Parkingspot spot = _repo.Parkingspots.First(b => b.Id == id);
+            Parkingspot spot = _repo.Parkingspots.First(b => b.ParkId == id);
 
-            return View(spot.Fordon);
+            return View(spot.ParkedVehicle);
         }
 
         [HttpPost]

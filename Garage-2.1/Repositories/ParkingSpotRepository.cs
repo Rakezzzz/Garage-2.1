@@ -7,9 +7,8 @@ using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using Garage_2._1.Models.Exceptions;
-using Garage_2._1.Models;
 
-namespace Garage_2._0.Repositories
+namespace Garage_2._1.Repositories
 {
     public class ParkingspotRepository
     {
@@ -36,17 +35,17 @@ namespace Garage_2._0.Repositories
         public void Park(Vehicle vehicle, int ParkID)
         {
             Parkingspot tempSpot = (from spot in dataBase.Parkingspots
-                                    where spot.Id == ParkID
+                                    where spot.ParkId == ParkID
                                     select spot).FirstOrDefault();
 
             if (tempSpot == null)
                 throw new ParkingspotNotFoundException("Parkingspot (" + ParkID + ") does not exist in this garage.");
 
-            if (tempSpot.Fordon != null)
+            if (tempSpot.ParkedVehicle != null)
                 throw new VehicleAlreadyExistException("There is allready a vehicle in this spot. There cannot be two.");
 
             dataBase.Vehicles.AddOrUpdate(vehicle);
-            tempSpot.Fordon = vehicle;
+            tempSpot.ParkedVehicle = vehicle;
             dataBase.SaveChanges();
         }
         /// <summary>
@@ -58,15 +57,15 @@ namespace Garage_2._0.Repositories
         public void Leave(int ParkID)
         {
             Parkingspot tempSpot = (from spot in dataBase.Parkingspots
-                                    where spot.Id == ParkID
+                                    where spot.ParkId == ParkID
                                     select spot).FirstOrDefault();
             if (tempSpot == null)
                 throw new ParkingspotNotFoundException("Parkingspot (" + ParkID + ") does not exist in this garage.");
 
-            if (tempSpot.Fordon == null)
+            if (tempSpot.ParkedVehicle == null)
                 throw new VehicleNotFoundException("There is no vehicle in that parkingspot");
 
-            tempSpot.Fordon = null;
+            tempSpot.ParkedVehicle = null;
             dataBase.SaveChanges();
 
         }

@@ -49,7 +49,7 @@ namespace Garage_2._1.Repositories
         /// <summary>
         /// It will add your vehicle to the parkingspot with ParkID or throw eather of 2 exceptions. 
         /// ParkingspotNotFoundException will be thrown if there is no corresponging parkingspot to the ID.
-        /// VehicleAllreadyExistException will be thrown if there allready is an vehicle where you are trying to park.
+        /// SpotAllreadyOccupiedException will be thrown if there allready is an vehicle where you are trying to park.
         /// </summary>
         /// <param name="vehicle">The vehicle you want to park.</param>
         /// <param name="ParkID">The ID to the paringspot you want to park at.</param>
@@ -63,7 +63,7 @@ namespace Garage_2._1.Repositories
                 throw new ParkingspotNotFoundException("Parkingspot (" + ParkID + ") does not exist in this garage.");
 
             if (tempSpot.ParkedVehicle != null)
-                throw new VehicleAlreadyExistException("There is allready a vehicle in this spot. There cannot be two.");
+                throw new SpotAllreadyOccupiedException("There is allready a vehicle in this spot. There cannot be two.");
 
             dataBase.Vehicles.AddOrUpdate(vehicle);
             tempSpot.ParkedVehicle = vehicle;
@@ -91,5 +91,29 @@ namespace Garage_2._1.Repositories
 
         }
 
+        /// <summary>
+        /// Rents a specific parkingspot for a specific amount of time for a specific person or throws eather of 2 exceptions
+        /// ParkingspotNotFoundException will be thrown if there is no corresponging parkingspot to the ID.
+        /// SpotAllreadyOccupiedException will be thrown if someone is allready renting the parkingspot.
+        /// </summary>
+        /// <param name="ParkID">The ID to the paringspot you want to rent.</param>
+        /// <param name="person">The person that are trying to rent the parkingspot.</param>
+        /// <param name="timeSpan">The amount of time the person wants to rent the parkingspot.</param>
+        public void Rent (int ParkID, Person person, TimeSpan timeSpan)
+        {
+            Parkingspot tempSpot = (from spot in dataBase.Parkingspots
+                                    where spot.ParkId == ParkID
+                                    select spot).FirstOrDefault();
+            if (tempSpot == null)
+                throw new ParkingspotNotFoundException("Parkingspot (" + ParkID + ") does not exist in this garage.");
+
+            if (tempSpot.TimeOfRental != null)
+                throw new SpotAllreadyOccupiedException("This parkingspot is not avalible for renting at this moment.");
+
+            tempSpot.Renter = person;
+            tempSpot.TimeOfRental = DateTime.Now;
+            tempSpot.RentalTime = timeSpan;
+            dataBase.SaveChanges();
+        }
     }
 }

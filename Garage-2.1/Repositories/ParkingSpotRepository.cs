@@ -12,19 +12,41 @@ namespace Garage_2._1.Repositories
 {
     public class ParkingspotRepository
     {
-        private GarageContext dataBase = new GarageContext();
+        private ApplicationDbContext dataBase = new ApplicationDbContext();
 
         public IEnumerable<Parkingspot> Parkingspots
         {
             get
             {
-                foreach (Parkingspot parkingspot in dataBase.Parkingspots)
+                List<Parkingspot> secondTempList = dataBase.Parkingspots.ToList();
+                foreach (Parkingspot parkingspot in secondTempList)
                 {
-                    yield return parkingspot;
+                    var temp = new Parkingspot();
+                    temp.OverrideProperties(parkingspot);
+                    temp.ParkedVehicle = GetVehicleByRegNum(temp.RegNum);
+                    temp.Renter = GetPersonBySSN(temp.SSN);
+                    yield return temp;
                 }
             }
         }
 
+        
+
+        public Vehicle GetVehicleByRegNum(string regNum)
+        {
+            var temp = (from v in dataBase.Vehicles
+                where v.RegNum == regNum
+                select v).First();
+            if (temp != null)
+                return dataBase.Vehicles.Find(regNum);
+            else
+                throw new VehicleNotFoundException("There is no vehicle with that regnum in the garage.");
+        }
+
+        public Person GetPersonBySSN(string ssn)
+        {
+            return dataBase.Persons.Find(ssn);
+        }
         /// <summary>
         /// It will add your vehicle to the parkingspot with ParkID or throw eather of 2 exceptions. 
         /// ParkingspotNotFoundException will be thrown if there is no corresponging parkingspot to the ID.

@@ -14,19 +14,13 @@ namespace Common.Extensions
         /// <param name="property">The property to be queried.</param>
         /// <param name="value">The value to search for.</param>
         /// <returns>Returns an IEnumerable containing the queried objects.</returns>
-        public static IEnumerable<T> PropertyContains<T>(this IEnumerable<T> source, string property, string value)
+        public static IEnumerable<T> CollectionPropertyContains<T>(this IEnumerable<T> source, string property, string value)
         {
             if (source == null)
                 throw new ArgumentNullException("collection");
 
-            if (!typeof(T).HasProperty(property))
-                throw new ArgumentException("Provided Search Property is not present in Type.");
-
             return source
-                .Where(item =>
-                    typeof(T).GetProperty(property)
-                        .GetValue(item, null).ToString()
-                        .Contains(value));
+                .Where(item => item.PropertyContains<T>(property, value));
         }
     }
 }

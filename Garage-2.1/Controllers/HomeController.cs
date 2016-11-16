@@ -22,6 +22,8 @@ namespace Garage_2._1.Controllers
     //Att time
     //Checkout
 
+
+    //.Where(v => v.ParkedVehicle.PropertyContains("Type", "Car")) Syntax för sökning?
     public class HomeController : Controller
     {
 

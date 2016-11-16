@@ -115,10 +115,13 @@ namespace Garage_2._1.Repositories
         /// SpotAllreadyOccupiedException will be thrown if someone is allready renting the parkingspot.
         /// </summary>
         /// <param name="ParkID">The ID to the parkingspot you want to rent.</param>
-        /// <param name="person">The person that are trying to rent the parkingspot.</param>
+        /// <param name="user">The Account that are trying to rent the parkingspot.</param>
         /// <param name="timeSpan">The amount of time the person wants to rent the parkingspot.</param>
-        public void Rent (int parkID, Person person, TimeSpan timeSpan)
+        public void Rent (int parkID, string user, TimeSpan timeSpan)
         {
+            if (dataBase.Persons.Find(user) == null)
+                throw new PersonNotFoundException("A person with that SSN doesnt exists!");
+
             Parkingspot tempSpot = (from spot in dataBase.Parkingspots
                                     where spot.ParkId == parkID
                                     select spot).FirstOrDefault();
@@ -128,7 +131,7 @@ namespace Garage_2._1.Repositories
             if (tempSpot.TimeOfRental != null)
                 throw new SpotAllreadyOccupiedException("This parkingspot is not avalible for renting at this moment.");
 
-            tempSpot.Renter = person;
+            tempSpot.SSN = user;
             tempSpot.TimeOfRental = DateTime.Now;
             tempSpot.RentalTime = timeSpan;
             dataBase.SaveChanges();

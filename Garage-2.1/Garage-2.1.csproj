@@ -178,6 +178,7 @@
     <Compile Include="Models\Common\Extensions\CollectionExtensions.cs" />
     <Compile Include="Models\Common\Extensions\ObjectExtensions.cs" />
     <Compile Include="Models\Exceptions\ParkingspotNotFoundException.cs" />
+    <Compile Include="Models\Exceptions\SpotAllreadyOccupiedException.cs" />
     <Compile Include="Models\Exceptions\VehicleAlreadyExistsException.cs" />
     <Compile Include="Models\Exceptions\VehicleNotFoundException.cs" />
     <Compile Include="Models\IdentityModels.cs" />

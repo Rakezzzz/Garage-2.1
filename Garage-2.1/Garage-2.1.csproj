@@ -178,6 +178,7 @@
     <Compile Include="Models\Common\Extensions\CollectionExtensions.cs" />
     <Compile Include="Models\Common\Extensions\ObjectExtensions.cs" />
     <Compile Include="Models\Exceptions\ParkingspotNotFoundException.cs" />
+    <Compile Include="Models\Exceptions\PersonNotFoundException.cs" />
     <Compile Include="Models\Exceptions\SpotAllreadyOccupiedException.cs" />
     <Compile Include="Models\Exceptions\VehicleAlreadyExistsException.cs" />
     <Compile Include="Models\Exceptions\VehicleNotFoundException.cs" />
@@ -251,6 +252,7 @@
     <Content Include="Views\Home\AddVehicle.cshtml" />
     <Content Include="Views\Home\ParkVehicle.cshtml" />
     <Content Include="Views\Home\EditVehicle.cshtml" />
+    <Content Include="Views\Home\RentSpot.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,4 +1,4 @@
-﻿@model Garage_2._1.Models.InfoViewModel
+﻿@model Garage_2._1.Models.Parkingspot
 
 @{
     ViewBag.Title = "ParkVehicle";
@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Type)
+            @Html.DisplayNameFor(model => model.ParkedVehicle.Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Id)
+            @Html.DisplayNameFor(model => model.ParkedVehicle.RegNum)
         </th>
         <th></th>
     </tr>

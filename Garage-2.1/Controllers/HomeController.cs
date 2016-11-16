@@ -32,7 +32,6 @@ namespace Garage_2._1.Controllers
         public ActionResult Index()
         {
             return View(_repo.Parkingspots
-                .Where(v => v.ParkedVehicle.PropertyContains("Type", "Car"))
                 .OrderByDescending(b => b.RentalTime));
         }
 

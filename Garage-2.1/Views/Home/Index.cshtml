@@ -40,7 +40,7 @@
             </td>
             <td>
                 @Html.ActionLink("Details", "**Details", new { id = item.ParkId }) |
-                @if (false)
+                @if (item.Renter == null)
                 {
                     @Html.ActionLink("Rent Spot", "RentSpot", new { id = item.ParkId })
                 }

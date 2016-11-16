@@ -5,37 +5,27 @@ using System.Web;
 
 namespace Garage_2._1.Models.Exceptions
 {
-    public class VehicleAllreadyExistException : Exception
+    public class PersonAllreadyExistException: Exception
     {
         /// <summary>
         /// Just create the exception
         /// </summary>
-        public VehicleAllreadyExistException()
-        {
-
-        }
+        public PersonAllreadyExistException() { }
 
         /// <summary>
         /// Create the exception with description
         /// </summary>
         /// <param name="message">Exception description</param>
-        public VehicleAllreadyExistException(string message)
-            : base(message)
-        {
-
-        }
-
+        public PersonAllreadyExistException(string message)
+            : base(message) { }
 
         /// <summary>
         /// Create the exception with description and inner cause
         /// </summary>
         /// <param name="message">Exception description</param>
         /// <param name="innerException">Exception inner cause</param>
-        public VehicleAllreadyExistException(string message, Exception inner)
-            : base(message, inner)
-        {
-
-        }
+        public PersonAllreadyExistException(string message, Exception inner)
+            : base(message, inner) { }
 
         /// <summary>
         /// Create the exception from serialized data.
@@ -44,7 +34,8 @@ namespace Garage_2._1.Models.Exceptions
         /// </summary>
         /// <param name="info">Serialization info</param>
         /// <param name="context">Serialization context</param>
-        protected VehicleAllreadyExistException(System.Runtime.Serialization.SerializationInfo info,
+        protected PersonAllreadyExistException(System.Runtime.Serialization.SerializationInfo info,
             System.Runtime.Serialization.StreamingContext context) { }
+
     }
 }

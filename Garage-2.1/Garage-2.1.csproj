@@ -181,6 +181,7 @@
     <Compile Include="Models\Exceptions\VehicleAlreadyExistsException.cs" />
     <Compile Include="Models\Exceptions\VehicleNotFoundException.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InfoViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Parkingspot.cs" />
     <Compile Include="Models\Person.cs" />
@@ -250,6 +251,9 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Home\AddVehicle.cshtml" />
+    <Content Include="Views\Home\EditVehicle.cshtml" />
+    <Content Include="Views\Home\ParkVehicle.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -54,7 +54,7 @@ namespace Common.Extensions
         public static bool PropertyContains<T>(this T item, string property, string value)
         {
             if (item == null)
-                throw new ArgumentNullException("collection");
+                throw new ArgumentNullException("item");
 
             if (!typeof(T).HasProperty(property))
                 throw new ArgumentException("Provided Search Property is not present in Type.");

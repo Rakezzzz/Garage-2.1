@@ -9,6 +9,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.ParkId)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.TimeOfRental)
         </th>
         <th>
@@ -24,7 +27,9 @@
 
     @foreach (var item in Model)
     {
-        <tr>
+        <tr><td>
+                @Html.DisplayFor(modelItem => item.ParkId)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.TimeOfRental)
             </td>
@@ -39,22 +44,21 @@
                 @Html.DisplayFor(modelItem => item.ParkedVehicle.RegNum)
             </td>
             <td>
-                @Html.ActionLink("Details", "**Details", new { id = item.ParkId }) |
                 @if (item.Renter == null)
                 {
-                    @Html.ActionLink("Rent Spot", "RentSpot", new { id = item.ParkId })
+                    @Html.ActionLink("Rent Spot", "RentSpot", new {id = item.ParkId})
                 }
                 else
                 {
-                    if (item.ParkedVehicle != null) 
-                        {
-                        @Html.ActionLink("Edit ", "EditVehicle", new { id = item.ParkId })
-                        @Html.ActionLink("Leave ", "Leave", new { id = item.ParkId })
-                        @Html.ActionLink("Evict ", "Eviction", new { id = item.ParkId })
+                    if (item.ParkedVehicle != null)
+                    {
+                        @Html.ActionLink("Edit ", "EditVehicle", new {id = item.ParkId})
+                        @Html.ActionLink("Leave ", "Leave", new {id = item.ParkId})
+                        @Html.ActionLink("Evict ", "Eviction", new {id = item.ParkId})
                     }
                     else
                     {
-                        @Html.ActionLink("Park Vehicle", "ParkVehicle", new { id = item.ParkId })
+                        @Html.ActionLink("Park Vehicle", "ParkVehicle", new {id = item.ParkId})
                     }
                 }
 

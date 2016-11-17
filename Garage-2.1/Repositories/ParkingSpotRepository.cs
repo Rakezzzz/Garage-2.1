@@ -47,7 +47,7 @@ namespace Garage_2._1.Repositories
             var cars = (from myCars in dataBase.Vehicles
                         where myCars.SSN == user
                         select myCars).ToList();
-            if (cars.Count < 1)
+            if (cars.Count <= 0)
                 throw new VehicleNotFoundException("No vehicles was found!");
 
             return cars;

@@ -207,7 +207,7 @@ namespace Garage_2._1.Repositories
         /// </summary>
         /// <param name="vehicle"></param>
         /// <param name="user"></param>
-        void AddVehicle(Vehicle vehicle, string user)
+        public void AddVehicle(Vehicle vehicle, string user)
         {
             if (dataBase.Vehicles.Find(vehicle.RegNum) != null)
                 throw new VehicleAllreadyExistException();

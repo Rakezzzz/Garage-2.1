@@ -2,10 +2,10 @@
 @model Garage_2._1.Models.Vehicle
 
 @{
-    ViewBag.Title = "EditVehicle";
+    ViewBag.Title = "Edit Vehicle";
 }
 
-<h2>EditVehicle</h2>
+<h2>Edit Vehicle</h2>
 
 
 @using (Html.BeginForm())
@@ -13,11 +13,14 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Vehicle</h4>
+        <h4>
+            @Html.Label(Model.Type.ToString())
+            @Html.Label(Model.RegNum)
+        </h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.RegNum)
-        @Html.HiddenFor(model => model.Owner)
+        @Html.HiddenFor(model => model.SSN)
         @Html.HiddenFor(model => model.Type)
 
         <div class="form-group">
@@ -31,10 +34,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PaintColor, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("MyType",
-                    EnumHelper.GetSelectList(typeof(KnownColor)),
-                    Model.PaintColor.Name,
-                    new { @class = "form-control" })
+                @Html.EnumDropDownListFor(model => model.PaintColor, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.PaintColor, "", new { @class = "text-danger" })
             </div>
         </div>

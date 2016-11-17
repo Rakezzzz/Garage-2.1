@@ -9,7 +9,7 @@ namespace Garage_2._1.Models
     public class InfoViewModel
     {
         public int ParkingSpotId { get; set; }
-        public IEnumerable Collection { get; set; }
+        public List<Vehicle> Collection { get; set; }
         public TimeSpan Time {get; set;}
 
         public InfoViewModel()
@@ -17,7 +17,7 @@ namespace Garage_2._1.Models
             
         }
 
-        public InfoViewModel(int parkingspotId, IEnumerable collection = null, TimeSpan time = default(TimeSpan))
+        public InfoViewModel(int parkingspotId, List<Vehicle> collection = null, TimeSpan time = default(TimeSpan))
         {
             this.ParkingSpotId = parkingspotId;
             this.Collection = collection;

@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Garage_2._1.Models.Parkingspot>
+﻿@using Microsoft.AspNet.Identity
+@model IEnumerable<Garage_2._1.Models.Parkingspot>
 
 @{
     ViewBag.Title = "Index";
@@ -44,11 +45,28 @@
                 @Html.DisplayFor(modelItem => item.ParkedVehicle.RegNum)
             </td>
             <td>
-                @if (item.SSN == null)
+                @*@if (User.Identity.GetUserId() != null && item.SSN == null)
+                {
+                    @Html.ActionLink("Rent Spot", "RentSpot", new { id = item.ParkId })
+                }
+                else
+                {
+                    if (item.ParkedVehicle != null)
+                    {
+                        @Html.ActionLink("Edit ", "EditVehicle", new { id = item.ParkId })
+                        @Html.ActionLink("Leave ", "Leave", new { id = item.ParkId })
+                        @Html.ActionLink("Evict ", "Eviction", new { id = item.ParkId })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Park Vehicle", "ParkVehicle", new { id = item.ParkId })
+                    }
+                }*@
+                @if (User.Identity.GetUserId() != null && item.SSN == null)
                 {
                     @Html.ActionLink("Rent Spot", "RentSpot", new {id = item.ParkId})
                 }
-                else
+                else if (item.SSN == User.Identity.GetUserId())
                 {
                     if (item.ParkedVehicle != null)
                     {

@@ -32,7 +32,7 @@ namespace Garage_2._1.Controllers
         public ActionResult Index()
         {
             return View(_repo.Parkingspots
-                .OrderByDescending(b => b.RentalTime));
+                .OrderBy(b => b.ParkId));
         }
 
 

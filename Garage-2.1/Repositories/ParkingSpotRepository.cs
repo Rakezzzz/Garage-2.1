@@ -113,7 +113,7 @@ namespace Garage_2._1.Repositories
             if (tempSpot == null)
                 throw new ParkingspotNotFoundException("Parkingspot (" + ParkID + ") does not exist in this garage.");
 
-            if (GetVehicleByRegNum(tempSpot.RegNum) == null)
+            if (tempSpot.RegNum == null)
                 throw new VehicleNotFoundException("There is no vehicle in that parkingspot");
 
             tempSpot.ParkedVehicle = null;

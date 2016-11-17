@@ -11,6 +11,7 @@ namespace Garage_2._1.Models
     public class Vehicle
     {
         [Key]
+        [RegularExpression("^[A-Z]{3}[0-9]{3}$")]
         public string RegNum { get; set; }
 
         [Required]

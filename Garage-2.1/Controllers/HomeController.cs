@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Garage_2._1.Repositories;
 using Garage_2._1.Models;
+using Microsoft.AspNet.Identity;
 using Common.Extensions;
 
 namespace Garage_2._1.Controllers
@@ -31,18 +32,11 @@ namespace Garage_2._1.Controllers
 
         public ActionResult Index()
         {
-            return View( 
+            return View(
                 _repo.ParkingSpotsWithVehicles
                     .OrderBy(p => p.ParkedVehicle.Type)
                     .ThenBy(p => p.TimeOfRental));
         }
-
-        //[Authorize]
-        //public ActionResult Index()
-        //{
-        //    return View(_repo.Parkingspots
-        //        .OrderByDescending(b => b.ParkId));
-        //}
 
 
         /// <summary>
@@ -50,18 +44,19 @@ namespace Garage_2._1.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public ActionResult ParkVehicle(int id)
+        public ActionResult ParkVehicle(int id, string regnum = null)
         {
-            //list all vehicles known to belong to owner of Parkingslot
-            //ViewBag.currentId = id;
+            if (regnum != null)
+            {
+                var vehicle = _repo.GetVehicleByRegNum(regnum);
+                _repo.Park(vehicle, id);
+                return RedirectToAction("Index");
 
-            //Person owner = _repo.Parkingspots.SearchFromProperty("Id", id.ToString()).First();
-            //var vehicles = _repo.Vehicles.Where(b => b.owner = owner);
+            }
 
-            //return View(vehicles);
-            List<Vehicle> test = new List<Vehicle>();
-
-            return View(test);
+            var vehicles = _repo.GetAllCarsByUser(User.Identity.GetUserId());
+            InfoViewModel model = new InfoViewModel(id, vehicles);
+            return View(model);
 
             //Add option to create new vehicle belonging to owner
 
@@ -91,7 +86,6 @@ namespace Garage_2._1.Controllers
         public ActionResult RentSpot(int id)
         {
             InfoViewModel model = new InfoViewModel(id);
-            //Set owner & timespan for spot
 
             return View(model);
         }
@@ -102,20 +96,15 @@ namespace Garage_2._1.Controllers
 
             if (ModelState.IsValid)
             {
-                // Not used until we have a user
-                // _repo.Rent(model.ParkingSpotId, model.Owner.SSN, model.Time);
+                _repo.Rent(model.ParkingSpotId, User.Identity.GetUserId(), model.Time);
                 return RedirectToAction("Index");
             }
-
-            //Set owner & timespan for spot
 
             return View(model);
         }
 
         public ActionResult EditVehicle(int id)
         {
-
-            //get slot
             Parkingspot spot = _repo.Parkingspots.First(b => b.ParkId == id);
 
             return View(spot.ParkedVehicle);

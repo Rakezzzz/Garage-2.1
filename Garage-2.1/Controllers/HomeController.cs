@@ -6,7 +6,8 @@ using System.Web.Mvc;
 using Garage_2._1.Repositories;
 using Garage_2._1.Models;
 using Common.Extensions;
-
+using Microsoft.AspNet.Identity;
+using System.Web.Security;
 namespace Garage_2._1.Controllers
 {
 
@@ -31,8 +32,11 @@ namespace Garage_2._1.Controllers
 
         public ActionResult Index()
         {
+            
             return View(_repo.Parkingspots
                 .OrderByDescending(b => b.RentalTime));
+
+
         }
 
 
@@ -82,6 +86,7 @@ namespace Garage_2._1.Controllers
         public ActionResult RentSpot(int id)
         {
             InfoViewModel model = new InfoViewModel(id);
+            
             //Set owner & timespan for spot
 
             return View(model);
@@ -94,7 +99,7 @@ namespace Garage_2._1.Controllers
             if (ModelState.IsValid)
             {
                 // Not used until we have a user
-                // _repo.Rent(model.ParkingSpotId, model.Owner.SSN, model.Time);
+                _repo.Rent(model.ParkingSpotId, User.Identity.GetUserId(), model.Time);
                 return RedirectToAction("Index");
             }
 

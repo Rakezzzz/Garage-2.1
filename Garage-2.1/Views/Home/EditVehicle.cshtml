@@ -31,11 +31,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.PaintColor, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("MyType",
-                    EnumHelper.GetSelectList(typeof(KnownColor)),
-                    Model.PaintColor.Name,
-                    new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PaintColor, "", new { @class = "text-danger" })
+                
+                @Html.EnumDropDownListFor(model => model.PaintColor, "Select Color", new { htmlAttributes = new { @class = "form-control" } })
+                @*@Html.DropDownList("Model.PaintColor", EnumHelper.GetSelectList(typeof(KnownColor)),"Select Color",
+                    new {@class = "form-control"})*@
+                @Html.ValidationMessageFor(model => model.PaintColor, "", new {@class = "text-danger"})
             </div>
         </div>
 

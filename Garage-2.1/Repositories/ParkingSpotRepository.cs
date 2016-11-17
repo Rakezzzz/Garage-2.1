@@ -39,7 +39,22 @@ namespace Garage_2._1.Repositories
             }
         }
 
-        
+        public List<Vehicle> GetAllCarsByUser(string user)
+        {
+            if (dataBase.Users.Find(user) == null)
+                throw new PersonNotFoundException("A person with that SSN doesnt exists!");
+
+            var cars = (from myCars in dataBase.Vehicles
+                        where myCars.SSN == user
+                        select myCars).ToList();
+            if (cars.Count <= 0)
+                throw new VehicleNotFoundException("No vehicles was found!");
+
+            return cars;
+            
+
+
+        }
 
         public Vehicle GetVehicleByRegNum(string regNum)
         {

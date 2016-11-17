@@ -17,12 +17,12 @@ namespace Garage_2._1.Migrations
 
         protected override void Seed(Garage_2._1.Models.ApplicationDbContext context)
         { 
-            Vehicle v1 = new Vehicle() { RegNum = "AAA", SSN = "80", PaintColor = Color.LightSalmon, Type = VehicleType.Bus, NumberOfWheels = 1 };
-            Vehicle v2 = new Vehicle() { RegNum = "BBB", SSN = "80", PaintColor = Color.LightSalmon, Type = VehicleType.Car, NumberOfWheels = 2 };
-            Vehicle v3 = new Vehicle() { RegNum = "CCC", SSN = "8", PaintColor = Color.LightSalmon, Type = VehicleType.Car, NumberOfWheels = 3 };
-            Vehicle v4 = new Vehicle() { RegNum = "DDD", SSN = "8", PaintColor = Color.LightSalmon, Type = VehicleType.Motorcycle, NumberOfWheels = 4 };
-            Vehicle v5 = new Vehicle() { RegNum = "EEE", SSN = "3", PaintColor = Color.LightSalmon, Type = VehicleType.Trailer, NumberOfWheels = 5 };
-            Vehicle v6 = new Vehicle() { RegNum = "FFF", SSN = "3", PaintColor = Color.LightSalmon, Type = VehicleType.Car, NumberOfWheels = 6 };
+            Vehicle v1 = new Vehicle() { RegNum = "AAA", SSN = "80", PaintColor = VehicleColor.Red, Type = VehicleType.Bus, NumberOfWheels = 1 };
+            Vehicle v2 = new Vehicle() { RegNum = "BBB", SSN = "80", PaintColor = VehicleColor.Red, Type = VehicleType.Car, NumberOfWheels = 2 };
+            Vehicle v3 = new Vehicle() { RegNum = "CCC", SSN = "8", PaintColor =  VehicleColor.Green, Type = VehicleType.Car, NumberOfWheels = 3 };
+            Vehicle v4 = new Vehicle() { RegNum = "DDD", SSN = "8", PaintColor =  VehicleColor.Green, Type = VehicleType.Motorcycle, NumberOfWheels = 4 };
+            Vehicle v5 = new Vehicle() { RegNum = "EEE", SSN = "3", PaintColor =  VehicleColor.Blue, Type = VehicleType.Trailer, NumberOfWheels = 5 };
+            Vehicle v6 = new Vehicle() { RegNum = "FFF", SSN = "3", PaintColor =  VehicleColor.Green, Type = VehicleType.Car, NumberOfWheels = 6 };
 
             context.Vehicles.AddOrUpdate(
                 v=>v.RegNum,

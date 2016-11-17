@@ -17,7 +17,7 @@ namespace Garage_2._1.Models
         public string SSN { get; set; }
 
         [Required]
-        public Color PaintColor { get; set; }
+        public VehicleColor PaintColor { get; set; }
         [Required]
         public int NumberOfWheels { get; set; }
         [Required]
@@ -28,7 +28,7 @@ namespace Garage_2._1.Models
 
         }
 
-        public Vehicle(string id, string ssn, Color paintColor, VehicleType type, int numberOfWheels)
+        public Vehicle(string id, string ssn, VehicleColor paintColor, VehicleType type, int numberOfWheels)
         {
             this.RegNum = id;
             this.PaintColor = paintColor;
@@ -45,5 +45,12 @@ namespace Garage_2._1.Models
         Bus,
         Trailer
     }
-    
+
+    public enum VehicleColor
+    {
+        Red,
+        Green,
+        Blue,
+        Yellow
+    }
 }

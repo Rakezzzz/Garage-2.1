@@ -18,6 +18,7 @@ namespace Garage_2._1.Models
 
         [Required]
         public Color PaintColor { get; set; }
+
         [Required]
         public int NumberOfWheels { get; set; }
         [Required]

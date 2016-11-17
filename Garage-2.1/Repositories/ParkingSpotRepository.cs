@@ -77,7 +77,7 @@ namespace Garage_2._1.Repositories
                 throw new VehicleNotFoundException("No vehicles was found!");
 
             return cars;
-            
+
 
 
         }
@@ -85,8 +85,8 @@ namespace Garage_2._1.Repositories
         public Vehicle GetVehicleByRegNum(string regNum)
         {
             var temp = (from v in dataBase.Vehicles
-                where v.RegNum == regNum
-                select v).FirstOrDefault();
+                        where v.RegNum == regNum
+                        select v).FirstOrDefault();
             if (temp != null)
                 return dataBase.Vehicles.Find(regNum);
             else
@@ -100,6 +100,10 @@ namespace Garage_2._1.Repositories
 
             return true;
         }
+
+
+
+
 
         /// <summary>
         /// It will add your vehicle to the parkingspot with ParkID or throw eather of 2 exceptions. 
@@ -155,7 +159,7 @@ namespace Garage_2._1.Repositories
         /// <param name="ParkID">The ID to the parkingspot you want to rent.</param>
         /// <param name="user">The Account that are trying to rent the parkingspot.</param>
         /// <param name="timeSpan">The amount of time the person wants to rent the parkingspot.</param>
-        public void Rent (int parkID, string user, TimeSpan timeSpan)
+        public void Rent(int parkID, string user, TimeSpan timeSpan)
         {
             if (dataBase.Users.Find(user) == null)
                 throw new PersonNotFoundException("A person with that SSN doesnt exists!");

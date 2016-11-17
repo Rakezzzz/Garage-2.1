@@ -152,5 +152,13 @@ namespace Garage_2._1.Controllers
             _repo.Eviction(id);
             return RedirectToAction("Index");
         }
+
+        public ActionResult Search(string property = "Type", string value = "")
+        {
+            return 
+                View(_repo.ParkingSpotsWithVehicles
+                .Where(p => p.ParkedVehicle
+                    .PropertyContains(property, value)));
+        }
     }
 }

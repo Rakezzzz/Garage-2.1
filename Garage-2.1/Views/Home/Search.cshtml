@@ -1,0 +1,92 @@
+﻿@model IEnumerable<Garage_2._1.Models.Parkingspot>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="row">
+    <div class="container">
+        <div class="input-group">
+            <select name="property">
+                <option value="RegNum">Registration Number</option>
+                <option value="Type">Vehicle Type</option>
+                <option value="PaintColor">Paint Colour</option>
+                <option value="NumberOfWheels">Number of wheels</option>
+            </select>
+            <input name="value" type="text" class="form-control" placeholder="Search for..." />
+            <button class="btn btn-default" type="submit">
+                Sök
+            </button>
+        </div>
+    </div>
+</div>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ParkId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TimeOfRental)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RentalTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParkedVehicle.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ParkedVehicle.RegNum)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TimeOfRental)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RentalTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkedVehicle.Type)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.ParkedVehicle.RegNum)
+            </td>
+            <td>
+                @if (item.SSN == null)
+                {
+                    @Html.ActionLink("Rent Spot", "RentSpot", new { id = item.ParkId })
+                }
+                else
+                {
+                    if (item.ParkedVehicle != null)
+                    {
+                        @Html.ActionLink("Edit ", "EditVehicle", new { id = item.ParkId })
+                        @Html.ActionLink("Leave ", "Leave", new { id = item.ParkId })
+                        @Html.ActionLink("Evict ", "Eviction", new { id = item.ParkId })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Park Vehicle", "ParkVehicle", new { id = item.ParkId })
+                    }
+                }
+
+
+            </td>
+        </tr>
+    }
+
+</table>

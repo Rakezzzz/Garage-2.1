@@ -32,8 +32,10 @@ namespace Garage_2._1.Controllers
 
         public ActionResult Index()
         {
-            return View(_repo.Parkingspots
-                .OrderBy(b => b.ParkId));
+            return View(
+                _repo.ParkingSpotsWithVehicles
+                    .OrderBy(p => p.ParkedVehicle.Type)
+                    .ThenBy(p => p.TimeOfRental));
         }
 
 

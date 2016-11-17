@@ -13,11 +13,8 @@ namespace Garage_2._1.Models
         [Key]
         public string RegNum { get; set; }
 
+        [Required]
         public string SSN { get; set; }
-
-        [ForeignKey("SSN")]
-        public Person Owner { get; set; }
-
 
         [Required]
         public Color PaintColor { get; set; }
@@ -31,18 +28,13 @@ namespace Garage_2._1.Models
 
         }
 
-        public Vehicle(string id, Person owner, Color paintColor, VehicleType type, int numberOfWheels)
+        public Vehicle(string id, string ssn, Color paintColor, VehicleType type, int numberOfWheels)
         {
             this.RegNum = id;
             this.PaintColor = paintColor;
-            this.Owner = owner;
+            this.SSN = ssn;
             this.Type = type;
             this.NumberOfWheels = numberOfWheels;
-        }
-
-        public object Clone()
-        {
-            return new Vehicle(this.RegNum, (Person)this.Owner.Clone(), this.PaintColor, this.Type, this.NumberOfWheels);
         }
     }
 

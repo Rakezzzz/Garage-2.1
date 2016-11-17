@@ -17,8 +17,6 @@ namespace Garage_2._1.Models
         public Vehicle ParkedVehicle { get; set; }
 
         public string SSN { get; set; }
-        [ForeignKey("SSN")]
-        public Person Renter { get; set; }
 
 
         public DateTime? TimeOfRental { get;  set; }
@@ -44,12 +42,6 @@ namespace Garage_2._1.Models
         {
             this.RentalTime = time;
             this.TimeOfRental = DateTime.Now;
-        }
-
-
-        public object Clone()
-        {
-            return new Parkingspot((Vehicle)this.ParkedVehicle.Clone(), this.TimeOfRental, this.RentalTime);
         }
     }
 }

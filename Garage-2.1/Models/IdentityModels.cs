@@ -26,7 +26,6 @@ namespace Garage_2._1.Models
         }
 
         public DbSet<Models.Parkingspot> Parkingspots { get; set; }
-        public DbSet<Models.Person> Persons { get; set; }
         public DbSet<Models.Vehicle> Vehicles { get; set; }
 
         public static ApplicationDbContext Create()

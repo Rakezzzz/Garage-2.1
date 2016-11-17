@@ -16,21 +16,7 @@ namespace Garage_2._1.Migrations
         }
 
         protected override void Seed(Garage_2._1.Models.ApplicationDbContext context)
-        {
-
-            Person p1 = new Person() { SSN = "80", Name = "Sigge", Address = "Stockholm", Phonenumber = "00002205" };
-            Person p2 = new Person() { SSN = "8", Name = "Aps", Address = "Stockholm", Phonenumber = "00002205" };
-            Person p3 = new Person() { SSN = "3", Name = "Emil", Address = "Stockholm", Phonenumber = "00002205" };
-
-
-            context.Persons.AddOrUpdate(
-                p => p.SSN,
-                p1,
-                p2,
-                p3
-                );
-
-
+        { 
             Vehicle v1 = new Vehicle() { RegNum = "AAA", SSN = "80", PaintColor = Color.LightSalmon, Type = VehicleType.Bus, NumberOfWheels = 1 };
             Vehicle v2 = new Vehicle() { RegNum = "BBB", SSN = "80", PaintColor = Color.LightSalmon, Type = VehicleType.Car, NumberOfWheels = 2 };
             Vehicle v3 = new Vehicle() { RegNum = "CCC", SSN = "8", PaintColor = Color.LightSalmon, Type = VehicleType.Car, NumberOfWheels = 3 };

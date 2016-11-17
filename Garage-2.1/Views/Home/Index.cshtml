@@ -44,7 +44,7 @@
                 @Html.DisplayFor(modelItem => item.ParkedVehicle.RegNum)
             </td>
             <td>
-                @if (item.Renter == null)
+                @if (item.SSN == null)
                 {
                     @Html.ActionLink("Rent Spot", "RentSpot", new {id = item.ParkId})
                 }

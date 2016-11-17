@@ -23,12 +23,10 @@ namespace Garage_2._1.Repositories
                 {
                     try
                     {
-                        parkingspot.Renter = GetPersonBySSN(parkingspot.SSN);
                         parkingspot.ParkedVehicle = GetVehicleByRegNum(parkingspot.RegNum);
                     }
                     catch (PersonNotFoundException)
                     {
-                        parkingspot.Renter = null;
                         parkingspot.ParkedVehicle = null;
                     }
                     catch (VehicleNotFoundException)
@@ -54,14 +52,12 @@ namespace Garage_2._1.Repositories
                 throw new VehicleNotFoundException("There is no vehicle with that regnum in the garage.");
         }
 
-        public Person GetPersonBySSN(string ssn)
+        public bool UserExists(string ssn)
         {
-            Person tempPerson = dataBase.Persons.Find(ssn);
+            if (dataBase.Users.Find(ssn) == null)
+                return false;
 
-            if (tempPerson == null)
-                throw new PersonNotFoundException("That person doesnt exist in the database.");
-
-            return tempPerson;
+            return true;
         }
 
         /// <summary>
@@ -120,7 +116,7 @@ namespace Garage_2._1.Repositories
         /// <param name="timeSpan">The amount of time the person wants to rent the parkingspot.</param>
         public void Rent (int parkID, string user, TimeSpan timeSpan)
         {
-            if (dataBase.Persons.Find(user) == null)
+            if (dataBase.Users.Find(user) == null)
                 throw new PersonNotFoundException("A person with that SSN doesnt exists!");
 
             Parkingspot tempSpot = (from spot in dataBase.Parkingspots
@@ -168,8 +164,6 @@ namespace Garage_2._1.Repositories
         /// <param name="user"></param>
         void AddVehicle(Vehicle vehicle, string user)
         {
-            if (dataBase.Persons.Find(user) == null)
-                throw new PersonNotFoundException("The user havent added a person to thier account.");
             if (dataBase.Vehicles.Find(vehicle.RegNum) != null)
                 throw new VehicleAllreadyExistException();
 
@@ -178,22 +172,5 @@ namespace Garage_2._1.Repositories
             dataBase.SaveChanges();
 
         }
-
-        /// <summary>
-        /// Adds a person to the database and binds it to a specific person or throws an exception.
-        /// PersonAllreadyExistException will be throw if a person with that ssn allready exists in the database.
-        /// </summary>
-        /// <param name="person">The person you want to add.</param>
-        /// <param name="user">The user who will be bound to that person.</param>
-        void AddPerson(Person person, string user)
-        {
-            if (dataBase.Persons.Find(person.SSN) != null)
-                throw new PersonAllreadyExistException("A person with that SSN allready exists and cannot be added again!");
-            person.SSN = user;
-
-            dataBase.Persons.Add(person);
-            dataBase.SaveChanges();
-        }
-
     }
 }

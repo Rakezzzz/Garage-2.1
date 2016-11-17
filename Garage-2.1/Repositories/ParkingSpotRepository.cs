@@ -116,7 +116,7 @@ namespace Garage_2._1.Repositories
             if (tempSpot.RegNum == null)
                 throw new VehicleNotFoundException("There is no vehicle in that parkingspot");
 
-            tempSpot.ParkedVehicle = null;
+            tempSpot.RegNum = null;
             dataBase.SaveChanges();
 
         }

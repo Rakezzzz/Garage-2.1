@@ -18,7 +18,7 @@ namespace Garage_2._1.Models
         public string SSN { get; set; }
 
         [Required]
-        public Color PaintColor { get; set; }
+        public VehicleColor PaintColor { get; set; }
 
         [Required]
         public int NumberOfWheels { get; set; }

@@ -19,12 +19,8 @@ namespace Common.Extensions
             PropertyInfo[] properties = from.GetType().GetProperties();
 
             foreach (PropertyInfo pi in properties)
-            {
                 if (pi.CanWrite)
-                {
                     pi.SetValue(to, pi.GetValue(from, null), null);
-                }
-            }
         }
 
 
@@ -44,7 +40,8 @@ namespace Common.Extensions
 
 
         /// <summary>
-        /// Searches a property of inidividual items.
+        /// Searches a property of inidividual items. Throws Argument null exceptions if 
+        /// provided item is null or a ArgumentException if Property is not present in Type.
         /// </summary>
         /// <typeparam name="T">The Type of the object to search.</typeparam>
         /// <param name="item">The Object to search.</param>

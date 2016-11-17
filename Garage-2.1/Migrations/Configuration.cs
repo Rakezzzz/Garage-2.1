@@ -17,12 +17,12 @@ namespace Garage_2._1.Migrations
 
         protected override void Seed(Garage_2._1.Models.ApplicationDbContext context)
         { 
-            Vehicle v1 = new Vehicle() { RegNum = "AAA", SSN = "80", PaintColor = Color.LightSalmon, Type = VehicleType.Bus, NumberOfWheels = 1 };
-            Vehicle v2 = new Vehicle() { RegNum = "BBB", SSN = "80", PaintColor = Color.LightSalmon, Type = VehicleType.Car, NumberOfWheels = 2 };
-            Vehicle v3 = new Vehicle() { RegNum = "CCC", SSN = "8", PaintColor = Color.LightSalmon, Type = VehicleType.Car, NumberOfWheels = 3 };
-            Vehicle v4 = new Vehicle() { RegNum = "DDD", SSN = "8", PaintColor = Color.LightSalmon, Type = VehicleType.Motorcycle, NumberOfWheels = 4 };
-            Vehicle v5 = new Vehicle() { RegNum = "EEE", SSN = "3", PaintColor = Color.LightSalmon, Type = VehicleType.Trailer, NumberOfWheels = 5 };
-            Vehicle v6 = new Vehicle() { RegNum = "FFF", SSN = "3", PaintColor = Color.LightSalmon, Type = VehicleType.Car, NumberOfWheels = 6 };
+            Vehicle v1 = new Vehicle() { RegNum = "AAA123", SSN = "80", PaintColor = VehicleColor.Red, Type = VehicleType.Bus, NumberOfWheels = 1 };
+            Vehicle v2 = new Vehicle() { RegNum = "BBB213", SSN = "80", PaintColor = VehicleColor.Red, Type = VehicleType.Car, NumberOfWheels = 2 };
+            Vehicle v3 = new Vehicle() { RegNum = "CCC321", SSN = "8", PaintColor =  VehicleColor.Green, Type = VehicleType.Car, NumberOfWheels = 3 };
+            Vehicle v4 = new Vehicle() { RegNum = "DDD321", SSN = "8", PaintColor =  VehicleColor.Green, Type = VehicleType.Motorcycle, NumberOfWheels = 4 };
+            Vehicle v5 = new Vehicle() { RegNum = "EEE321", SSN = "3", PaintColor =  VehicleColor.Blue, Type = VehicleType.Trailer, NumberOfWheels = 5 };
+            Vehicle v6 = new Vehicle() { RegNum = "FFF123", SSN = "3", PaintColor =  VehicleColor.Green, Type = VehicleType.Car, NumberOfWheels = 6 };
 
             context.Vehicles.AddOrUpdate(
                 v=>v.RegNum,
@@ -35,12 +35,12 @@ namespace Garage_2._1.Migrations
                 );
 
 
-            Parkingspot ps1 = new Parkingspot() { ParkId = 1, RegNum = "AAA", SSN = "80", TimeOfRental = DateTime.Now, RentalTime = TimeSpan.FromMinutes(10)};
-            Parkingspot ps2 = new Parkingspot() { ParkId = 2, RegNum = "BBB", SSN = "80", TimeOfRental = DateTime.Now, RentalTime = TimeSpan.FromMinutes(10) };
-            Parkingspot ps3 = new Parkingspot() { ParkId = 3, RegNum = "CCC", SSN = "80", TimeOfRental = DateTime.Now, RentalTime = TimeSpan.FromMinutes(10) };
-            Parkingspot ps4 = new Parkingspot() { ParkId = 4, RegNum = "DDD", SSN = "80", TimeOfRental = DateTime.Now, RentalTime = TimeSpan.FromMinutes(10) };
-            Parkingspot ps5 = new Parkingspot() { ParkId = 5, RegNum = "EEE", SSN = "8", TimeOfRental = DateTime.Now, RentalTime = TimeSpan.FromMinutes(10) };
-            Parkingspot ps6 = new Parkingspot() { ParkId = 6, RegNum = "FFF", SSN = "3", TimeOfRental = DateTime.Now, RentalTime = TimeSpan.FromMinutes(10) };
+            Parkingspot ps1 = new Parkingspot() { ParkId = 1, RegNum = "AAA123", SSN = "80", TimeOfRental = DateTime.Now, RentalTime = TimeSpan.FromMinutes(10) };
+            Parkingspot ps2 = new Parkingspot() { ParkId = 2, RegNum = "BBB213", SSN = "80", TimeOfRental = DateTime.Now, RentalTime = TimeSpan.FromMinutes(10) };
+            Parkingspot ps3 = new Parkingspot() { ParkId = 3, RegNum = "CCC321", SSN = "80", TimeOfRental = DateTime.Now, RentalTime = TimeSpan.FromMinutes(10) };
+            Parkingspot ps4 = new Parkingspot() { ParkId = 4, RegNum = "DDD321", SSN = "80", TimeOfRental = DateTime.Now, RentalTime = TimeSpan.FromMinutes(10) };
+            Parkingspot ps5 = new Parkingspot() { ParkId = 5, RegNum = "EEE321", SSN = "8", TimeOfRental = DateTime.Now, RentalTime = TimeSpan.FromMinutes(10) };
+            Parkingspot ps6 = new Parkingspot() { ParkId = 6, RegNum = "FFF123", SSN = "3", TimeOfRental = DateTime.Now, RentalTime = TimeSpan.FromMinutes(10) };
 
 
 

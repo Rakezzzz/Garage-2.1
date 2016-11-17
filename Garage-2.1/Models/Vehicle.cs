@@ -11,6 +11,7 @@ namespace Garage_2._1.Models
     public class Vehicle
     {
         [Key]
+        [RegularExpression("^[A-Z]{3}[0-9]{3}$")]
         public string RegNum { get; set; }
 
         [Required]
@@ -29,7 +30,7 @@ namespace Garage_2._1.Models
 
         }
 
-        public Vehicle(string id, string ssn, Color paintColor, VehicleType type, int numberOfWheels)
+        public Vehicle(string id, string ssn, VehicleColor paintColor, VehicleType type, int numberOfWheels)
         {
             this.RegNum = id;
             this.PaintColor = paintColor;
@@ -47,4 +48,11 @@ namespace Garage_2._1.Models
         Trailer
     }
     
+    public enum VehicleColor
+    {
+        Red,
+        Green,
+        Blue,
+        Yellow
+    }
 }

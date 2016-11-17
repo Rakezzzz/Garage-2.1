@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Garage_2._1.Models.Parkingspot>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+<div class="row">
+    <div class="container">
+        <div class="input-group">
+            <select name="property">
+                <option value="RegNum">Registration Number</option>
+                <option value="Type">Vehicle Type</option>
+                <option value="PaintColor">Paint Colour</option>
+                <option value="NumberOfWheels">Number of wheels</option>
+            </select>
+            <input name="value" type="text" class="form-control" placeholder="Search for..." />
+            <button class="btn btn-default" type="submit">
+                Sök
+            </button>
+        </div>
+    </div>
+</div>
+}
+
+@Html.Partial("~/Views/Shared/_ListParkingspots.cshtml", Model);

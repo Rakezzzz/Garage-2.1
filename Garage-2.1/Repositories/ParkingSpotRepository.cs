@@ -39,6 +39,32 @@ namespace Garage_2._1.Repositories
             }
         }
 
+        public IEnumerable<Parkingspot> ParkingSpotsWithVehicles
+        {
+            get
+            {
+                List<Parkingspot> secondTempList = dataBase.Parkingspots.ToList();
+
+                foreach (Parkingspot parkingspot in secondTempList)
+                {
+                    try
+                    {
+                        parkingspot.ParkedVehicle = GetVehicleByRegNum(parkingspot.RegNum);
+                    }
+                    catch (PersonNotFoundException)
+                    {
+                        continue;
+                    }
+                    catch (VehicleNotFoundException)
+                    {
+                        continue;
+                    }
+
+                    yield return parkingspot;
+                }
+            }
+        }
+
         public List<Vehicle> GetAllCarsByUser(string user)
         {
             if (dataBase.Users.Find(user) == null)

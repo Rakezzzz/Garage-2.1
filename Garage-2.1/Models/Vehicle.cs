@@ -22,6 +22,7 @@ namespace Garage_2._1.Models
 
         [Required]
         public int NumberOfWheels { get; set; }
+
         [Required]
         public VehicleType Type { get; set; }
 

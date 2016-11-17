@@ -1,4 +1,4 @@
-﻿@model Garage_2._1.Models.Parkingspot
+﻿@model Garage_2._1.Models.InfoViewModel
 
 @{
     ViewBag.Title = "ParkVehicle";
@@ -7,31 +7,31 @@
 <h2>ParkVehicle</h2>
 
 <p>
-    @Html.ActionLink("Add new vehicle", "AddVehicle", new { id = ViewBag.currentId })
+    @Html.ActionLink("Add new vehicle", "AddVehicle")
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ParkedVehicle.Type)
+            @Html.DisplayNameFor(model => model.Collection[0].Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ParkedVehicle.RegNum)
+            @Html.DisplayNameFor(model => model.Collection[0].RegNum)
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Collection)
     {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Type)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.RegNum)
             </td>
             <td>
-                @Html.ActionLink("Park", "Edit", new { id = item.Id, slotId = ViewBag.currentId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                @Html.ActionLink("Park", "ParkVehicle", new { regnum = item.RegNum,}) |
+                
             </td>
         </tr>
     }

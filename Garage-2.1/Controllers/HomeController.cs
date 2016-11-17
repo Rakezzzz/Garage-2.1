@@ -75,6 +75,7 @@ namespace Garage_2._1.Controllers
         [HttpPost]
         public ActionResult AddVehicle(Vehicle vehicle)
         {
+
             if (ModelState.IsValid)
             {
                 _repo.AddVehicle(vehicle, User.Identity.GetUserId());    

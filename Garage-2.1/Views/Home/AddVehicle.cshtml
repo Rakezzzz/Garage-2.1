@@ -1,4 +1,5 @@
 ﻿@using System.Drawing
+@using Microsoft.AspNet.Identity
 @model Garage_2._1.Models.Vehicle
 
 @{
@@ -15,6 +16,9 @@
     <div class="form-horizontal">
         <h4>Vehicle</h4>
         <hr />
+        
+        @Html.Hidden(Model.SSN, User.Identity.GetUserId())
+
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.RegNum, htmlAttributes: new { @class = "control-label col-md-2" })

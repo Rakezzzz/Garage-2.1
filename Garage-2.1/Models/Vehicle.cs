@@ -11,7 +11,7 @@ namespace Garage_2._1.Models
     public class Vehicle
     {
         [Key]
-        [RegularExpression("^[A-Z]{3}[0-9]{3}$")]
+        [RegularExpression("^[A-Z]{3}[0-9]{3}$", ErrorMessage="The Vehicle must have a Swedish Registration number.")]
         public string RegNum { get; set; }
 
         [Required]
@@ -19,8 +19,10 @@ namespace Garage_2._1.Models
 
         [Required]
         public VehicleColor PaintColor { get; set; }
+
         [Required]
         public int NumberOfWheels { get; set; }
+
         [Required]
         public VehicleType Type { get; set; }
 
@@ -46,7 +48,7 @@ namespace Garage_2._1.Models
         Bus,
         Trailer
     }
-
+    
     public enum VehicleColor
     {
         Red,

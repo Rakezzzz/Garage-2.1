@@ -47,7 +47,7 @@ namespace Garage_2._1.Repositories
             var cars = (from myCars in dataBase.Vehicles
                         where myCars.SSN == user
                         select myCars).ToList();
-            if (cars.Count < 1)
+            if (cars.Count <= 0)
                 throw new VehicleNotFoundException("No vehicles was found!");
 
             return cars;
@@ -113,7 +113,7 @@ namespace Garage_2._1.Repositories
             if (tempSpot == null)
                 throw new ParkingspotNotFoundException("Parkingspot (" + ParkID + ") does not exist in this garage.");
 
-            if (tempSpot.ParkedVehicle == null)
+            if (tempSpot.RegNum == null)
                 throw new VehicleNotFoundException("There is no vehicle in that parkingspot");
 
             tempSpot.ParkedVehicle = null;

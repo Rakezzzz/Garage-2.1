@@ -10,10 +10,6 @@ using Common.Extensions;
 
 namespace Garage_2._1.Controllers
 {
-
-
-
-
     //        Index - Show all parkingspots + sort
 
     //Your vehicles
@@ -38,7 +34,10 @@ namespace Garage_2._1.Controllers
                     .ThenBy(p => p.TimeOfRental));
         }
 
-
+        public ActionResult SuperIndex()
+        {
+            return View(_repo.Parkingspots.ToList());
+        }
         /// <summary>
         /// Used when a Vehicle is parked in rented Parkingspot
         /// </summary>
@@ -58,28 +57,29 @@ namespace Garage_2._1.Controllers
             InfoViewModel model = new InfoViewModel(id, vehicles);
             return View(model);
 
-            //Add option to create new vehicle belonging to owner
-
-            //return RedirectToAction("AddVehicle", new {id = id});
 
         }
 
-        public ActionResult AddVehicle(string id, int slotId)
+        public ActionResult AddVehicle()
         {
 
             //Parkingspot parkingSpot = _repo.Parkingspots.SearchFromProperty("Id", id.ToString()).First();
             //lägg till vehicle med id i parkingslot
 
             //Vehicle vehicle = _repo.Vehicles.SearchFromProperty("Id", id).First();
-            //_repo.Park(vehicle, slotId);
+            
 
-            return RedirectToAction("Index");
+            return View();
         }
 
         [HttpPost]
         public ActionResult AddVehicle(Vehicle vehicle)
         {
-            _repo.Park(vehicle, ViewBag.currentId);
+            if (ModelState.IsValid)
+            {
+                _repo.AddVehicle(vehicle, User.Identity.GetUserId());    
+            }
+            
             return RedirectToAction("Index");
         }
 

@@ -217,5 +217,21 @@ namespace Garage_2._1.Repositories
             dataBase.SaveChanges();
 
         }
+
+
+        public void CreateParkingspot()
+        {
+            int NumberOfParkingspots = (dataBase.Parkingspots.ToList().Count - 1);
+            dataBase.Parkingspots.Add(new Parkingspot() { 
+                ParkId = dataBase.Parkingspots.ToList()[NumberOfParkingspots].ParkId + 1,
+                ParkedVehicle = null,
+                RegNum = null,
+                RentalTime = null,
+                SSN = null,
+                TimeOfRental = null
+            });
+            dataBase.SaveChanges();
+
+        }
     }
 }

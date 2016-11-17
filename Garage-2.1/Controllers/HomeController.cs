@@ -60,6 +60,11 @@ namespace Garage_2._1.Controllers
 
         }
 
+        public ActionResult CreateParkingspot()
+        {
+            _repo.CreateParkingspot();
+            return RedirectToAction("Index");
+        }
         public ActionResult AddVehicle()
         {
 

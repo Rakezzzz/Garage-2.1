@@ -4,12 +4,18 @@
     ViewBag.Title = "Index";
 }
 
+
 <h2>Index</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
+
+
+    <div style="margin-top:50px;">
+        <p>Date: <input type="text" id="datepicker"></p>
+    </div>
     //array av enum vehicletype
     
     <div class="form-inline">

@@ -16,34 +16,34 @@
 }
 else
 {
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Collection[0].Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Collection[0].RegNum)
-            </th>
-            <th></th>
-        </tr>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Collection.FirstOrDefault().Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Collection.FirstOrDefault().RegNum)
+        </th>
+        <th></th>
+    </tr>
 
-        @foreach (var item in Model.Collection)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Type)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.RegNum)
-                </td>
-                <td>
+    @foreach (var item in Model.Collection)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RegNum)
+            </td>
+            <td>
                     @using (Html.BeginForm("ParkVehicle", "Home", new { id = Model.ParkingSpotId, regnum = item.RegNum}, FormMethod.Get, new { @class = "buttonStandard" }))
                     {
                         <input type="submit" class="btn btn-default delBtn" value="Park" />
                     }
-                </td>
-            </tr>
-        }
+            </td>
+        </tr>
+    }
     </table>
 }
 

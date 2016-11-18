@@ -4,18 +4,25 @@
     ViewBag.Title = "ParkVehicle";
 }
 
-<h2>ParkVehicle</h2>
+<h2>Park Vehicle</h2>
 
 <p>
     @Html.ActionLink("Add new vehicle", "AddVehicle")
 </p>
+
+@if (Model.Collection.Count() < 1)
+{
+    <h2>Please add a vehicle to park</h2>
+}
+else
+{
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Collection[0].Type)
+            @Html.DisplayNameFor(model => model.Collection.FirstOrDefault().Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Collection[0].RegNum)
+            @Html.DisplayNameFor(model => model.Collection.FirstOrDefault().RegNum)
         </th>
         <th></th>
     </tr>
@@ -30,13 +37,16 @@
                 @Html.DisplayFor(modelItem => item.RegNum)
             </td>
             <td>
-                @Html.ActionLink("Park", "ParkVehicle", new { regnum = item.RegNum,}) |
-                
+                    @using (Html.BeginForm("ParkVehicle", "Home", new { id = Model.ParkingSpotId, regnum = item.RegNum}, FormMethod.Get, new { @class = "buttonStandard" }))
+                    {
+                        <input type="submit" class="btn btn-default delBtn" value="Park" />
+                    }
             </td>
         </tr>
     }
+    </table>
+}
 
-</table>
 <div>
     @Html.ActionLink("Back to Index", "Index")
 </div>

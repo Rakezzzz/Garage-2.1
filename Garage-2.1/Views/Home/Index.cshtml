@@ -4,9 +4,24 @@
     ViewBag.Title = "Index";
 }
 
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div style="margin-top:50px;">
+        <p>Date: <input type="text" id="datepicker"></p>
+    </div>
+}
+
+
 <h2>Index</h2>
 
 @Html.ActionLink("SuperIndex", "SuperIndex") |
 @Html.ActionLink("Add Parkingspot to garage", "CreateParkingspot")
 
 @Html.Partial("~/Views/Shared/_ListParkingspots.cshtml", Model)
+
+

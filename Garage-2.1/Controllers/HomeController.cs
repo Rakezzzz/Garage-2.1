@@ -32,8 +32,7 @@ namespace Garage_2._1.Controllers
             return View(
                 _repo.ParkingSpotsWithVehicles
                     .OrderBy(p => p.ParkedVehicle.Type)
-                    .ThenBy(p => p.TimeOfRental)
-                    .Filter());
+                    .ThenBy(p => p.TimeOfRental));
         }
 
         [Authorize]

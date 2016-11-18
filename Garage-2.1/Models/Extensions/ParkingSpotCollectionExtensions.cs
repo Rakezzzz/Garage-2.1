@@ -36,7 +36,7 @@ namespace Garage_2._1.Models.Extensions
                 parkingSpots
                     .Where(p => 
                         types.Contains(p.ParkedVehicle.Type) &&
-                        p.TimeOfRental < DateTime.Now.Subtract(timeSpan.Value));
+                        p.TimeOfRental > DateTime.Now.Subtract(timeSpan.Value));
         }
     }
 }

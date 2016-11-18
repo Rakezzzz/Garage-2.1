@@ -34,6 +34,7 @@ namespace Garage_2._1.Controllers
                     .ThenBy(p => p.TimeOfRental));
         }
 
+        [Authorize]
         public ActionResult SuperIndex()
         {
             return View(_repo.Parkingspots.ToList());

@@ -33,7 +33,7 @@ namespace Garage_2._1.Controllers
                 types = new VehicleType[] { VehicleType.Car, VehicleType.Bus, VehicleType.Motorcycle, VehicleType.Trailer };
 
             if (!dateFrom.HasValue)
-                dateFrom = DateTime.Now.Subtract(TimeSpan.FromDays(7));
+                dateFrom = DateTime.FromBinary(1);
 
             if (!dateTo.HasValue)
                 dateTo = DateTime.Now;

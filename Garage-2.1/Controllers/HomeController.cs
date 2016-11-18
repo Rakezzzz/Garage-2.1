@@ -39,26 +39,21 @@ namespace Garage_2._1.Controllers
         {
             return View(_repo.Parkingspots.ToList());
         }
-        /// <summary>
-        /// Used when a Vehicle is parked in rented Parkingspot
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        public ActionResult ParkVehicle(int id, string regnum = null)
+
+        private ActionResult ParkVehicle(int id)
         {
-            if (regnum != null)
-            {
-                var vehicle = _repo.GetVehicleByRegNum(regnum);
-                _repo.Park(vehicle, id);
-                return RedirectToAction("Index");
-
-            }
-
             var vehicles = _repo.GetAllCarsByUser(User.Identity.GetUserId());
-            InfoViewModel model = new InfoViewModel(id, vehicles);
-            return View(model);
+            if (vehicles.Count() > 0)
+                return View(new InfoViewModel(id, vehicles));
+            else
+                return Content("You don't have any Vehicle to park!");
+        }
 
-
+        public ActionResult ParkVehicle(int id, string regnum)
+        {
+            var vehicle = _repo.GetVehicleByRegNum(regnum);
+            _repo.Park(vehicle, id);
+            return RedirectToAction("Index");
         }
 
         public ActionResult CreateParkingspot()
@@ -66,6 +61,7 @@ namespace Garage_2._1.Controllers
             _repo.CreateParkingspot();
             return RedirectToAction("Index");
         }
+
         public ActionResult AddVehicle()
         {
 

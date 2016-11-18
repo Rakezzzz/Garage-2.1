@@ -12,10 +12,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Collection[0].Type)
+            @Html.DisplayNameFor(model => model.Collection.FirstOrDefault().Type)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Collection[0].RegNum)
+            @Html.DisplayNameFor(model => model.Collection.FirstOrDefault().RegNum)
         </th>
         <th></th>
     </tr>

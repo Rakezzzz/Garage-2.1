@@ -40,20 +40,21 @@ namespace Garage_2._1.Controllers
             return View(_repo.Parkingspots.ToList());
         }
 
-        private ActionResult ParkVehicle(int id)
+        public ActionResult ParkVehicle(int id, string regnum = null)
         {
+            if (regnum != null)
+            {
+                var vehicle = _repo.GetVehicleByRegNum(regnum);
+                _repo.Park(vehicle, id);
+                return RedirectToAction("Index");
+            }
+
             var vehicles = _repo.GetAllCarsByUser(User.Identity.GetUserId());
+
             if (vehicles.Count() > 0)
                 return View(new InfoViewModel(id, vehicles));
             else
                 return Content("You don't have any Vehicle to park!");
-        }
-
-        public ActionResult ParkVehicle(int id, string regnum)
-        {
-            var vehicle = _repo.GetVehicleByRegNum(regnum);
-            _repo.Park(vehicle, id);
-            return RedirectToAction("Index");
         }
 
         public ActionResult CreateParkingspot()

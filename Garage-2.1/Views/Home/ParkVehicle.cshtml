@@ -38,7 +38,7 @@ else
                 @Html.DisplayFor(modelItem => item.RegNum)
             </td>
             <td>
-                <button class="btn btn-sm btn-default" type="button" href='@Url.Action("ParkVehicle", "Home", new {id = Model.ParkingSpotId, regnum = item.RegNum})'> Park </button>
+                @Html.ActionLink("Park", "ParkVehicle", new {id = Model.ParkingSpotId, regnum = item.RegNum})
             </td>
         </tr>
     }

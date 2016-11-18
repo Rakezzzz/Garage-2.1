@@ -8,37 +8,13 @@ namespace Garage_2._1.Models.Extensions
 {
     public static class ParkingSpotCollectionExtensions
     {
-        public static IEnumerable<Parkingspot> Filter(this IEnumerable<Parkingspot> parkingSpots, VehicleType[] types, TimeSpan? timeSpan = null)
+        public static IEnumerable<Parkingspot> Filter(this IEnumerable<Parkingspot> parkingSpots, VehicleType[] types, DateTime? from, DateTime? to)
         {
-            //IEnumerable<Parkingspot> filteredCars = null;
-
-            //if (vehicleType == null && timeSpan.HasValue)
-            //    filteredCars = from car in parkingSpots
-            //                   where car.TimeOfRental < DateTime.Now.Subtract(timeSpan.Value)
-            //                   select car;
-
-            //else if (timeSpan == null && vehicleType.HasValue)
-            //{
-            //    filteredCars = from car in parkingSpots
-            //                   where car.ParkedVehicle.Type == vehicleType
-            //                   select car;
-            //}
-            //else if (vehicleType.HasValue && timeSpan.HasValue)
-            //{
-            //    filteredCars = from car in parkingSpots
-            //                   where (car.ParkedVehicle.Type == vehicleType) && (car.TimeOfRental < DateTime.Now.Subtract(timeSpan.Value))
-            //                   select car;
-
-            //}
-            //return filteredCars;
-
-
-
             return 
                 parkingSpots
                     .Where(p => 
                         types.Contains(p.ParkedVehicle.Type) &&
-                        p.TimeOfRental > DateTime.Now.Subtract(timeSpan.Value));
+                        from < p.TimeOfRental && p.TimeOfRental  < to);
         }
     }
 }

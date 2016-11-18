@@ -8,7 +8,7 @@ namespace Garage_2._1.Models.Extensions
 {
     public static class ParkingSpotCollectionExtensions
     {
-        public IEnumerable<Parkingspot> Filter(this IEnumerable<Parkingspot> parkingSpots, VehicleType? vehicleType = null, TimeSpan? timeSpan = null)
+        public static IEnumerable<Parkingspot> Filter(this IEnumerable<Parkingspot> parkingSpots, VehicleType? vehicleType = null, TimeSpan? timeSpan = null)
         {
             IEnumerable<Parkingspot> filteredCars = null;
 

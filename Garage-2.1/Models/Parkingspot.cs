@@ -25,9 +25,6 @@ namespace Garage_2._1.Models
 
         public Parkingspot()
         {
-            //this.ParkedVehicle = null;
-            //this.RentalTime = null;
-            //this.TimeOfRental = null;
         }
 
         public Parkingspot(Vehicle iVehicle, DateTime? iTimeOfRental, TimeSpan? iRentalTime)

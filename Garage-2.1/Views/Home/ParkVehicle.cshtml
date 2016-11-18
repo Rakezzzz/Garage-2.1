@@ -10,7 +10,7 @@
     @Html.ActionLink("Add new vehicle", "AddVehicle")
 </p>
 
-@if (Model.Collection.Count == 0)
+@if (Model.Collection.Count() < 1)
 {
     <h2>Please add a vehicle to park</h2>
 }

@@ -49,12 +49,12 @@ namespace Garage_2._1.Controllers
                 return RedirectToAction("Index");
             }
 
-            var vehicles = _repo.GetAllCarsByUser(User.Identity.GetUserId());
-
-            if (vehicles.Count() > 0)
-                return View(new InfoViewModel(id, vehicles));
-            else
-                return Content("You don't have any Vehicle to park!");
+            return View(
+                new InfoViewModel(
+                    id, 
+                    _repo.GetAllCarsByUser(
+                        User.Identity.GetUserId()
+                )));
         }
 
         public ActionResult CreateParkingspot()

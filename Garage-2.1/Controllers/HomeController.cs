@@ -7,6 +7,7 @@ using Garage_2._1.Repositories;
 using Garage_2._1.Models;
 using Microsoft.AspNet.Identity;
 using Common.Extensions;
+using Garage_2._1.Models.Extensions;
 
 namespace Garage_2._1.Controllers
 {
@@ -28,10 +29,14 @@ namespace Garage_2._1.Controllers
 
         public ActionResult Index()
         {
-            return View(
-                _repo.ParkingSpotsWithVehicles
+            var viewModel = new FilterViewModel()
+            {
+                Parkingspots = _repo.ParkingSpotsWithVehicles
                     .OrderBy(p => p.ParkedVehicle.Type)
-                    .ThenBy(p => p.TimeOfRental));
+                    .ThenBy(p => p.TimeOfRental)
+            };
+
+            return View(viewModel);
         }
 
         [Authorize]

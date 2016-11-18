@@ -9,12 +9,6 @@
 
 @foreach (Enum e in Enum.GetValues(type))
 {
-    var display = type.GetField(e.ToString()).GetCustomAttribute<DisplayAttribute>();
-    if (display != null && (display.GetAutoGenerateField() ?? true))
-    {
-        <label class="checkbox" title="@display.GetDescription()">
-            <input type="checkbox" name="@name" value="@e.ToString()" checked="@Model.HasFlag(e)" />
-            @display.Name
-        </label>
-    }
+    <input type="checkbox" name="@name" value="@e.ToString()" checked="@Model.HasFlag(e)" />
+    @e.ToString()
 }

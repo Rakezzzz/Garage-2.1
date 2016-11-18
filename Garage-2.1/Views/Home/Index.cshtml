@@ -1,4 +1,5 @@
-﻿@model IEnumerable<Garage_2._1.Models.Parkingspot>
+﻿@using Garage_2._1.Models
+@model Garage_2._1.Models.FilterViewModel
 
 @{
     ViewBag.Title = "Index";
@@ -6,7 +7,39 @@
 
 <h2>Index</h2>
 
-@Html.ActionLink("SuperIndex", "SuperIndex") |
-@Html.ActionLink("Add Parkingspot to garage", "CreateParkingspot")
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-@Html.Partial("~/Views/Shared/_ListParkingspots.cshtml", Model)
+    //array av enum vehicletype
+    
+    <div class="form-inline">
+        <h4>
+            Filter
+        </h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            <p>Vehicle Type</p>
+            <input type="checkbox" name="@name" value="@e.ToString()" checked="@Model.HasFlag(e)"/>
+        </div>
+
+        <div class="form-group">
+            <p>Color</p>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Filter" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    <hr />
+}
+
+@Html.ActionLink("SuperIndex", "SuperIndex") |
+@Html.ActionLink("Add Parkingspot to garage", "CreateParkingspot") |
+@Html.ActionLink("Add new vehicle", "AddVehicle")
+
+@Html.Partial("~/Views/Shared/_ListParkingspots.cshtml", Model.Parkingspots)

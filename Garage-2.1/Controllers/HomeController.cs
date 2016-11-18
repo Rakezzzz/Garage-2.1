@@ -29,10 +29,14 @@ namespace Garage_2._1.Controllers
 
         public ActionResult Index()
         {
-            return View(
-                _repo.ParkingSpotsWithVehicles
+            var viewModel = new FilterViewModel()
+            {
+                Parkingspots = _repo.ParkingSpotsWithVehicles
                     .OrderBy(p => p.ParkedVehicle.Type)
-                    .ThenBy(p => p.TimeOfRental));
+                    .ThenBy(p => p.TimeOfRental)
+            };
+
+            return View(viewModel);
         }
 
         [Authorize]

@@ -6,8 +6,7 @@
     ViewBag.Title = "AddVehicle";
 }
 
-<h2>AddVehicle</h2>
-
+<h2>Add Vehicle</h2>
 
 @using (Html.BeginForm())
 {
@@ -15,11 +14,11 @@
 
     <div class="form-horizontal">
         <h4>Vehicle</h4>
-        <hr />
-        
-        @Html.Hidden(Model.SSN, User.Identity.GetUserId())
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        
+        @Html.Hidden("SSN", User.Identity.GetUserId())
+
         <div class="form-group">
             @Html.LabelFor(model => model.RegNum, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

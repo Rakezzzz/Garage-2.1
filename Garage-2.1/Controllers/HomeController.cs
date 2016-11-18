@@ -27,18 +27,18 @@ namespace Garage_2._1.Controllers
 
         private ParkingspotRepository _repo = new ParkingspotRepository();
 
-        public ActionResult Index()
+        public ActionResult Index(VehicleType[] types, TimeSpan? time)
         {
-            //var viewModel = new FilterViewModel()
-            //{
-            //    Parkingspots = _repo.ParkingSpotsWithVehicles
-            //        .OrderBy(p => p.ParkedVehicle.Type)
-            //        .ThenBy(p => p.TimeOfRental)
-            //};
+            if (types == null)
+                types = new VehicleType[] { VehicleType.Car, VehicleType.Bus, VehicleType.Motorcycle, VehicleType.Trailer };
+
+            if (!time.HasValue)
+                time = TimeSpan.FromDays(7);
 
             return View(_repo.ParkingSpotsWithVehicles
-                             .OrderBy(p => p.ParkedVehicle.Type)
-                             .ThenBy(p => p.TimeOfRental));
+                    .OrderBy(p => p.ParkedVehicle.Type)
+                    .ThenBy(p => p.TimeOfRental)
+                    .Filter(types, time));
         }
 
         [Authorize]

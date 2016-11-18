@@ -32,6 +32,8 @@ namespace Garage_2._1.Models.Extensions
             //}
             //return filteredCars;
 
+
+
             return 
                 parkingSpots
                     .Where(p => 

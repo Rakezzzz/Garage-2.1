@@ -1,5 +1,4 @@
-﻿@using Garage_2._1.Models
-@model IEnumerable<Garage_2._1.Models.Parkingspot>
+﻿@model IEnumerable<Garage_2._1.Models.Parkingspot>
 
 @{
     ViewBag.Title = "Index";
@@ -18,20 +17,16 @@
         <p>Date: <input type="text" id="datepicker"></p>
     </div>
     //array av enum vehicletype
-
+    
     <div class="form-inline">
-        <h4>
-            Filter
-        </h4>
         <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
         <div class="form-group">
             <p>Vehicle Type</p>
-        </div>
-
-        <div class="form-group">
-            <p>Color</p>
+            <input type="checkbox" name="types" value="Car" checked="checked"/> Car
+            <input type="checkbox" name="types" value="Motorcycle" checked="checked" /> Motorcycle
+            <input type="checkbox" name="types" value="Bus" checked="checked" /> Bus
+            <input type="checkbox" name="types" value="Trailer" checked="checked" /> Trailer
         </div>
 
         <div class="form-group">
@@ -47,7 +42,4 @@
 @Html.ActionLink("Add Parkingspot to garage", "CreateParkingspot") |
 @Html.ActionLink("Add new vehicle", "AddVehicle")
 
-
-
 @Html.Partial("~/Views/Shared/_ListParkingspots.cshtml", Model)
-
